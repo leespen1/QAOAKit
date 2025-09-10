@@ -31,7 +31,8 @@ setup(
         "tqdm",
         "cvxgraphalgs",
         "cvxopt",
-        "scikit-learn==1.0",
+        #"scikit-learn==1.0",
+        "scikit-learn", # Relaxing sklearn requirement
         "notebook",
         "matplotlib",
         "seaborn",
