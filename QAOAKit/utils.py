@@ -746,3 +746,10 @@ def qaoa_maxcut_energy(G, beta, gamma, precomputed_energies=None):
     backend = AerSimulator(method="statevector")
     sv = backend.run(qc).result().get_statevector()
     return obj_from_statevector(sv, obj, precomputed_energies=precomputed_energies)
+
+##############################################
+# Compatibility utils
+#############################################
+
+def df_append(self, other, ignore_index=False, **kwargs):
+    return pd.concat([self, other], ignore_index=ignore_index)

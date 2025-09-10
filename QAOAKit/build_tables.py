@@ -18,6 +18,7 @@ from .utils import (
     load_results_file_into_dataframe,
     get_adjacency_dict,
     read_graph_from_file,
+    df_append,
 )
 
 build_tables_folder = Path(__file__).parent
@@ -190,7 +191,7 @@ def build_full_qaoa_dataset():
             assert len(df_orig) == n_graphs[n_qubits]
             df_orig["n"] = df_orig.apply(lambda row: row["G"].number_of_nodes(), axis=1)
             assert (df_orig["n"] == n_qubits).all()
-            df = df.append(df_orig.reset_index())
+            df = df_append(df, df_orig.reset_index())
     assert len(df) == sum(v * 3 for v in n_graphs.values())
     df.to_pickle(
         Path(build_tables_folder, "../data/lookup_tables/full_qaoa_dataset_table.p")

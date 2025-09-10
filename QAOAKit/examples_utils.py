@@ -8,6 +8,7 @@ from .utils import (
     beta_to_qaoa_format,
     gamma_to_qaoa_format,
     qaoa_maxcut_energy,
+    df_append,
 )
 
 example_utils_folder = Path(__file__).parent
@@ -91,7 +92,7 @@ def get_20_node_erdos_renyi_graphs():
         df_orig["theta"] = df_orig.apply(lambda row: row["gamma"] + row["beta"], axis=1)
         df_orig["n"] = df_orig.apply(lambda row: row["G"].number_of_nodes(), axis=1)
         assert (df_orig["n"] == n_qubits).all()
-        df = df.append(df_orig.reset_index())
+        df = df_append(df, df_orig.reset_index())
     return df.rename(
         columns={
             "C_opt": "QAOA energy with optimized parameters",

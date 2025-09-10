@@ -25,7 +25,8 @@ setup(
         "qiskit-aer", # Adding qiskit-aer for circuit simulation
         "pynauty",
         "qiskit-optimization",
-        "pandas",
+        "pandas", # DataFrame.append was removed in later versions of pandas
+        #"pandas>=1.0,<2.0", # DataFrame.append was removed in later versions of pandas
         "networkx",
         "numpy",
         "pytest",
