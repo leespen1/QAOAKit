@@ -6,11 +6,6 @@ import numpy as np
 import pandas as pd
 from pathlib import Path
 from functools import partial
-try:
-    from qiskit.providers.aer import AerSimulator
-except ImportError:
-    print("Could not import AerSimulator, setting to None (don't try to run circuits in QAOAKit!)")
-    AerSimulator = None
 
 import json
 import re
@@ -737,15 +732,16 @@ def get_adjacency_matrix(G):
     return w
 
 
-def qaoa_maxcut_energy(G, beta, gamma, precomputed_energies=None):
-    """Computes MaxCut QAOA energy for graph G
-    qaoa format (`angles_to_qaoa_format`) used for beta, gamma
-    """
-    if precomputed_energies is None:
-        obj = partial(maxcut_obj, w=get_adjacency_matrix(G))
-    else:
-        obj = None
-    qc = get_maxcut_qaoa_circuit(G, beta, gamma)
-    backend = AerSimulator(method="statevector")
-    sv = backend.run(qc).result().get_statevector()
-    return obj_from_statevector(sv, obj, precomputed_energies=precomputed_energies)
+## Removing this function because I want to avoid Aer incompatibility with QOKit
+#def qaoa_maxcut_energy(G, beta, gamma, precomputed_energies=None):
+#    """Computes MaxCut QAOA energy for graph G
+#    qaoa format (`angles_to_qaoa_format`) used for beta, gamma
+#    """
+#    if precomputed_energies is None:
+#        obj = partial(maxcut_obj, w=get_adjacency_matrix(G))
+#    else:
+#        obj = None
+#    qc = get_maxcut_qaoa_circuit(G, beta, gamma)
+#    backend = AerSimulator(method="statevector")
+#    sv = backend.run(qc).result().get_statevector()
+#    return obj_from_statevector(sv, obj, precomputed_energies=precomputed_energies)
