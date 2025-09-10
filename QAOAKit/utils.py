@@ -6,7 +6,12 @@ import numpy as np
 import pandas as pd
 from pathlib import Path
 from functools import partial
-from qiskit.providers.aer import AerSimulator
+try:
+    from qiskit.providers.aer import AerSimulator
+except ImportError
+    print("Could not import AerSimulator, setting to None (don't try to run circuits in QAOAKit!)")
+    AerSimulator = None
+
 import json
 import re
 import warnings
