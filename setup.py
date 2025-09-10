@@ -22,6 +22,7 @@ setup(
     install_requires=[
         #"qiskit==0.29.0",
         "qiskit", # Relaxing qiskit requirement
+        "qiskit-aer", # Adding qiskit-aer for circuit simulation
         "pynauty",
         "qiskit-optimization",
         "pandas",
