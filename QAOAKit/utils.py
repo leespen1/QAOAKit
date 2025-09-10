@@ -8,7 +8,7 @@ from pathlib import Path
 from functools import partial
 try:
     from qiskit.providers.aer import AerSimulator
-except ImportError
+except ImportError:
     print("Could not import AerSimulator, setting to None (don't try to run circuits in QAOAKit!)")
     AerSimulator = None
 
